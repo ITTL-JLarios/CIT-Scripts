@@ -6,4 +6,4 @@ Param (
 )
 
 Start-Process -FilePath "$Path" -ArgumentList "/S"
-Write-Host "[+] $Name installed"
+Write-Host "[+] $PName installed"
