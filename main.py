@@ -10,6 +10,7 @@ scripts = os.path.join(root, 'scripts')
 checker = os.path.join(scripts, 'Checker.ps1')
 gcpw = os.path.join(scripts, 'AuthProvide.ps1')
 installer_sftw = os.path.join(scripts, 'ToolsInstaller.ps1') # installer of software
+winget = os.path.join(scripts, 'InstallWinget.ps1')
 
 # Script Manager
 sm = ScriptManager()
@@ -19,13 +20,18 @@ sm.powershell_call(checker)
 
 # Activate app id service
 app_id_service = input('[>] Do you want to start Application Identity? (y/n) default(yes)  ')
-if (app_id_service == 'y' or app_id_service == 'yes' or not app_id_service):
+if app_id_service == 'y' or app_id_service == 'yes' or not app_id_service:
     sm.powershell_call('sc.exe config appidsvc start=auto')
 
 # Install Google Credential for Windows
 install_gcpw =  input('[>] Do you want to install GCPW? (y/n) default(yes)  ')
-if (install_gcpw == 'y' or install_gcpw == 'yes' or not install_gcpw):
+if install_gcpw == 'y' or install_gcpw == 'yes' or not install_gcpw:
     sm.powershell_call(gcpw)
+
+# Install winget
+install_winget = input('[>] Do you wnat to install Winget? (y/n)')
+if install_winget == 'y' or install_winget == 'yes':
+    sm.powershell_call(winget)
 
 # Install programs
 installers_list = sm.read_installers(installers)
