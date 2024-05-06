@@ -1,0 +1,9 @@
+{
+    "installers": [
+        "Mozilla.Firefox", 
+        "Google.Chrome", 
+        "Google.ChromeRemoteDesktop", 
+        "NordSecurity.NordLayer", 
+        "WhatsApp.WhatsApp"
+    ]
+}

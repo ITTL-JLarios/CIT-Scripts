@@ -1,5 +1,6 @@
 import os
 from program.manager import ScriptManager
+import json
 
 # Root Paths
 root = os.path.join('.', 'program')
@@ -16,8 +17,8 @@ winget = os.path.join(scripts, 'InstallWinget.ps1')
 sm = ScriptManager()
 
 # Options and settings for scripts 
-sm.powershell_call(checker)
 
+sm.powershell_call(checker)
 # Activate app id service
 app_id_service = input('[>] Do you want to start Application Identity? (y/n) default(yes)  ')
 if app_id_service == 'y' or app_id_service == 'yes' or not app_id_service:
@@ -27,11 +28,6 @@ if app_id_service == 'y' or app_id_service == 'yes' or not app_id_service:
 install_gcpw =  input('[>] Do you want to install GCPW? (y/n) default(yes)  ')
 if install_gcpw == 'y' or install_gcpw == 'yes' or not install_gcpw:
     sm.powershell_call(gcpw)
-
-# Install winget
-install_winget = input('[>] Do you wnat to install Winget? (y/n)')
-if install_winget == 'y' or install_winget == 'yes':
-    sm.powershell_call(winget)
 
 # Install programs
 installers_list = sm.read_installers(installers)
@@ -46,3 +42,21 @@ elif "," in installer_options:
     opts = installer_options.split(",")
     opts = [installers_list[int(opt)] for opt in opts]
     sm.install_tools(opts, installer_sftw, installers)
+
+# Install programs
+with open('program/data/winstall.json') as f:
+  f_contents = json.load(f)
+
+installers_list = f_contents['installers']
+print("[>] Choose what programs do you want to install")
+print("[>] Installers :")
+[print(index, installer) for index, installer in enumerate(installers_list)]
+installer_options = input('Enter a for all or a list of numbers: ')
+
+if installer_options == "a" or installer_options == "all" :
+    sm.pwsh_install_tools(winget ,installers_list)
+    pass
+elif "," in installer_options:
+    opts = installer_options.split(",")
+    opts = [installers_list[int(opt)] for opt in opts]
+    sm.pwsh_install_tools(winget ,opts)

@@ -25,3 +25,7 @@ class ScriptManager:
     def install_tools(self, installers_list: list[str], script: str, dir: str) -> None:
         for installer in installers_list:
             self.powershell_call( f"{script} -PName {installer} -Path {os.path.join(dir, installer)}")
+
+    def pwsh_install_tools(self, script: str, list_app_ids: list[str]) -> None:
+        for app in list_app_ids:
+            self.powershell_call(f"{script} -PName {app}")
