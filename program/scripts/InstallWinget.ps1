@@ -3,5 +3,5 @@ Param (
     [string]$PName
 )
 
-winget.exe install -e --id $PName --accept-source-agreements
+winget.exe install --machine -e --id $PName --accept-source-agreements --accept-package-agreements
 Write-Host "[+] $PName installed"
