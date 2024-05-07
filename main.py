@@ -4,13 +4,14 @@ import json
 
 # Root Paths
 root = os.path.join('.', 'program')
-installers = os.path.join(root, 'installers')
+installers = os.path.join(root, 'installer')
 scripts = os.path.join(root, 'scripts')
 
 # scripts path
 checker = os.path.join(scripts, 'Checker.ps1')
 gcpw = os.path.join(scripts, 'AuthProvide.ps1')
 installer_sftw = os.path.join(scripts, 'ToolsInstaller.ps1') # installer of software
+installer_msi = os.path.join(scripts, 'MsiInstaller.ps1')
 winget = os.path.join(scripts, 'InstallWinget.ps1')
 
 # Script Manager
