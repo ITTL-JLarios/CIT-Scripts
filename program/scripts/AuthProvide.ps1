@@ -30,31 +30,6 @@ if (-not (Is-Admin)) {
     exit 5
 }
 
-<# Choose the GCPW file to download. 32-bit and 64-bit versions have different names #>
-$gcpwFileName = 'gcpwstandaloneenterprise.msi'
-if ([Environment]::Is64BitOperatingSystem) {
-    $gcpwFileName = 'gcpwstandaloneenterprise64.msi'
-}
-
-<# Download the GCPW installer. #>
-$gcpwUrlPrefix = 'https://dl.google.com/credentialprovider/'
-$gcpwUri = $gcpwUrlPrefix + $gcpwFileName
-Write-Host 'Downloading GCPW from' $gcpwUri
-Invoke-WebRequest -Uri $gcpwUri -OutFile $gcpwFileName
-
-<# Run the GCPW installer and wait for the installation to finish #>
-$arguments = "/i `"$gcpwFileName`""
-$installProcess = (Start-Process msiexec.exe -ArgumentList $arguments -PassThru -Wait)
-
-<# Check if installation was successful #>
-if ($installProcess.ExitCode -ne 0) {
-    $result = [System.Windows.MessageBox]::Show('Installation failed!', 'GCPW', 'OK', 'Error')
-    exit $installProcess.ExitCode
-}
-else {
-    $result = [System.Windows.MessageBox]::Show('Installation completed successfully!', 'GCPW', 'OK', 'Info')
-}
-
 <# Set the required registry key with the allowed domains #>
 $registryPath = 'HKEY_LOCAL_MACHINE\Software\Google\GCPW'
 $name = 'domains_allowed_to_login'
