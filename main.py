@@ -29,6 +29,7 @@ install_gcpw =  input('[>] Do you want to install GCPW? (y/n) default(yes)  ')
 if install_gcpw == 'y' or install_gcpw == 'yes' or not install_gcpw:
     sm.powershell_call(gcpw)
 
+""" TODO: Make this optional
 # Install programs
 installers_list = sm.read_installers(installers)
 print("[>] Choose what programs do you want to install")
@@ -42,6 +43,7 @@ elif "," in installer_options:
     opts = installer_options.split(",")
     opts = [installers_list[int(opt)] for opt in opts]
     sm.install_tools(opts, installer_sftw, installers)
+"""
 
 # Install programs
 with open('program/data/winstall.json') as f:

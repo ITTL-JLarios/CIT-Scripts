@@ -3,7 +3,11 @@
         "Mozilla.Firefox", 
         "Google.Chrome", 
         "Google.ChromeRemoteDesktop", 
+        "Google.GoogleDrive",
         "NordSecurity.NordLayer",
-        "9NKSQGP7F2NH"
+        "9NKSQGP7F2NH",
+        "Giorgiotani.Peazip",
+        "RingCentral.RingCentral",
+        "AnyDeskSoftwareGmbH.AnyDesk"
     ]
 }
