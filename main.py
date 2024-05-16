@@ -73,5 +73,5 @@ if app_id_service == "yes" or app_id_service == "y":
 
     name = input('[>] Type name: ')
 
-    new_name = f'{rename} -NewName {site}-{name}'
-    sm.powershell_call(rename, new_name)
+    new_name = f'{rename} -NewName "{site}-{name}"'
+    sm.powershell_call(new_name)
