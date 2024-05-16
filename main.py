@@ -12,6 +12,7 @@ checker = os.path.join(scripts, 'Checker.ps1')
 gcpw = os.path.join(scripts, 'AuthProvide.ps1')
 installer_sftw = os.path.join(scripts, 'ToolsInstaller.ps1') # installer of software
 winget = os.path.join(scripts, 'InstallWinget.ps1')
+rename = os.path.join(scripts, 'Rename.ps1')
 
 # Script Manager
 sm = ScriptManager()
@@ -60,3 +61,15 @@ elif "," in installer_options:
     opts = installer_options.split(",")
     opts = [installers_list[int(opt)] for opt in opts]
     sm.pwsh_install_tools(winget ,opts)
+
+# Update Computer name
+app_id_service = input('[>] Do you want to Rename Computer? (y/n)')
+if app_id_service == "yes" or app_id_service == "y":
+    site = input('[>] What site is? (Poratles, Reforma, etc) default(Portales) ')
+    if site == '':
+        site = "Portales"
+
+    name = input('[>] Type name: ')
+
+    new_name = f'{rename} -NewName {site}-{name}'
+    sm.powershell_call(rename, new_name)
