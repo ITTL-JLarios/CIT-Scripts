@@ -4,13 +4,14 @@ import json
 
 # Root Paths
 root = os.path.join('.', 'program')
-installers = os.path.join(root, 'installers')
+installers = os.path.join(root, 'installer')
 scripts = os.path.join(root, 'scripts')
 
 # scripts path
 checker = os.path.join(scripts, 'Checker.ps1')
 gcpw = os.path.join(scripts, 'AuthProvide.ps1')
 installer_sftw = os.path.join(scripts, 'ToolsInstaller.ps1') # installer of software
+installer_msi = os.path.join(scripts, 'MsiInstaller.ps1')
 winget = os.path.join(scripts, 'InstallWinget.ps1')
 rename = os.path.join(scripts, 'Rename.ps1')
 
@@ -29,6 +30,7 @@ if app_id_service == 'y' or app_id_service == 'yes' or not app_id_service:
 install_gcpw =  input('[>] Do you want to install GCPW? (y/n) default(yes)  ')
 if install_gcpw == 'y' or install_gcpw == 'yes' or not install_gcpw:
     sm.powershell_call(gcpw)
+
 
 # Install programs
 installers_list = sm.read_installers(installers)
